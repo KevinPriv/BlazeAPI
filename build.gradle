@@ -37,14 +37,14 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 
-version = "2.0"
-group= "me.kbrewster.sproject" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "SProject"
+version = "1.0"
+group= "me.kbrewster.blazeapi" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "Blaze API"
 
 minecraft {
 
     version = "1.12"
-    tweakClass = "me.kbrewster.api.launch.MinecraftTweaker"
+    tweakClass = "me.kbrewster.blazeapi.api.internal.BlazeTweaker"
     mappings = "snapshot_20170617"
     runDir = 'run'
 
