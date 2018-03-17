@@ -1,5 +1,6 @@
 package me.kbrewster.blazeapi.api.event
 
+import net.minecraft.client.multiplayer.WorldClient
 import net.minecraft.util.text.ITextComponent
 import java.lang.reflect.Method
 
@@ -53,6 +54,7 @@ class ServerDisconnectEvent(val reason: ITextComponent, val reasonLocalizationKe
  */
 class RespawnPlayerEvent : CancellableEvent()
 
+class WorldLoadEvent(val worldClient: WorldClient, val loadingMessage: String)
 /**
  * Fired once the client has shutdown
  */
