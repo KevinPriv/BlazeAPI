@@ -1,0 +1,20 @@
+package me.kbrewster.blazeapi.internal.mixin;
+
+import me.kbrewster.blazeapi.api.event.EventBus;
+import me.kbrewster.blazeapi.api.event.SpawnpointChangeEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin(World.class)
+public class MixinWorld {
+
+    @Inject(method = "setSpawnPoint", at = @At("HEAD"))
+    private void setSpawnPoint(BlockPos pos, CallbackInfo ci) {
+        EventBus.post(new SpawnpointChangeEvent(pos));
+    }
+
+}

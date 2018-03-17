@@ -2,6 +2,7 @@ package me.kbrewster.blazeapi.api.event
 
 import net.minecraft.client.gui.GuiScreen
 import net.minecraft.client.multiplayer.WorldClient
+import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.ITextComponent
 import java.lang.reflect.Method
 
@@ -49,6 +50,9 @@ class ChatReceivedEvent(var chat: ITextComponent) : CancellableEvent()
 class ServerJoinEvent(val ip: String, val port: Int)
 
 class ServerDisconnectEvent(val reason: ITextComponent, val reasonLocalizationKey: String)
+
+class SpawnpointChangeEvent(val blockPos: BlockPos)
+
 /**
  * Fired when a chat packet is about to be sent to the server
  */
