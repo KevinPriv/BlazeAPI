@@ -8,7 +8,7 @@ import net.minecraft.client.gui.GuiScreen
 @Retention(AnnotationRetention.RUNTIME)
 annotation class InjectWidget
 
-open class FlareScreen: GuiScreen() {
+open class DisplayScreen : GuiScreen() {
 
     private val buttons = ArrayList<WidgetButton>()
 
@@ -48,7 +48,6 @@ open class FlareScreen: GuiScreen() {
             }
         }
     }
-
     override fun setWorldAndResolution(mc: Minecraft?, width: Int, height: Int) {
         this.mc = mc
         this.itemRender = mc!!.renderItem

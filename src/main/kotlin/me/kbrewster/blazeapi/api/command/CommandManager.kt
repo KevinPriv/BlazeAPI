@@ -5,7 +5,7 @@ import java.security.InvalidParameterException
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.CLASS)
-annotation class Command(val name: String, val alias: Array<String>)
+annotation class Command(val name: String, val alias: Array<String> = [])
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FUNCTION)

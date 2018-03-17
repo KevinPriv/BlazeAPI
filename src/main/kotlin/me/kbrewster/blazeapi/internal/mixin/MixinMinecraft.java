@@ -1,10 +1,6 @@
 package me.kbrewster.blazeapi.internal.mixin;
 
-import me.kbrewster.blazeapi.BlazeAPI;
-import me.kbrewster.blazeapi.api.event.EventBus;
-import me.kbrewster.blazeapi.api.event.PostInitializationEvent;
-import me.kbrewster.blazeapi.api.event.PreInitializationEvent;
-import me.kbrewster.blazeapi.api.event.ShutdownEvent;
+import me.kbrewster.blazeapi.api.event.*;
 import me.kbrewster.blazeapi.internal.mixin.impl.IMinecraft;
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,6 +20,11 @@ public abstract class MixinMinecraft implements IMinecraft {
     @Inject(method = "init", at = @At("RETURN"))
     private void postInit(CallbackInfo ci) {
         EventBus.post(new PostInitializationEvent());
+    }
+
+    @Inject(method = "runTick", at = @At("RETURN"))
+    private void runTick(CallbackInfo ci) {
+        EventBus.post(new ClientTickEvent());
     }
 
     @Inject(method = "shutdown", at = @At("HEAD"))

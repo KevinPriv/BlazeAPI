@@ -2,7 +2,6 @@ package me.kbrewster.blazetesting;
 
 import me.kbrewster.blazeapi.api.config.SaveableString;
 import me.kbrewster.blazeapi.api.config.impl.GsonConfig;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +13,7 @@ public class ConfigTest {
 
     private GsonConfig config = new GsonConfig(new File("world.json"));
 
-    @SaveableString(id = "hello_world")
+    @SaveableString("hello_world")
     private String world = "hello world!";
 
     @Before

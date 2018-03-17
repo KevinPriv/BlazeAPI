@@ -2,10 +2,10 @@ package me.kbrewster.blazeapi.api.config.impl
 
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import me.kbrewster.blazeapi.api.config.*
 import java.io.File
 import java.lang.reflect.Field
-import com.google.gson.JsonParser
 
 class GsonConfig(private val file: File) : Config {
 
@@ -53,14 +53,14 @@ class GsonConfig(private val file: File) : Config {
 
                 when (annotation) {
                     is SaveableString -> {
-                        val fieldObject = clazzObject[annotation.id]
+                        val fieldObject = clazzObject[annotation.value]
                         if(fieldObject.isJsonNull) {
                             return
                         }
                         setString(obj, field, fieldObject.asString, annotation)
                     }
                     is SaveableBoolean -> {
-                        val fieldObject = clazzObject[annotation.id]
+                        val fieldObject = clazzObject[annotation.value]
                         if(fieldObject.isJsonNull) {
                             return
                         }
@@ -81,8 +81,8 @@ class GsonConfig(private val file: File) : Config {
                 field.isAccessible = true
                 field.annotations.forEach { annotation ->
                     when (annotation) {
-                        is SaveableString -> jsonObject.addProperty(annotation.id, getString(obj, field, annotation))
-                        is SaveableBoolean -> jsonObject.addProperty(annotation.id, getBoolean(obj, field, annotation))
+                        is SaveableString -> jsonObject.addProperty(annotation.value, getString(obj, field, annotation))
+                        is SaveableBoolean -> jsonObject.addProperty(annotation.value, getBoolean(obj, field, annotation))
                         is SaveableNumber -> TODO("not implemented")
                         is SaveableObject -> TODO("not implemented")
                     }

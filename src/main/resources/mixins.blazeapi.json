@@ -6,5 +6,11 @@
   "verbose": true,
   "mixins": [
     "MixinMinecraft",
+    "MixinEntityPlayerSP",
+    "MixinGuiConnecting",
+    "MixinGuiDisconnected",
+    "MixinGuiIngame",
+    "MixinGuiNewChat",
+    "MixinGuiScreen"
   ]
 }
