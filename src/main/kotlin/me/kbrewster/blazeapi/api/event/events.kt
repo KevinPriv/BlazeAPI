@@ -1,5 +1,6 @@
 package me.kbrewster.blazeapi.api.event
 
+import net.minecraft.client.gui.GuiScreen
 import net.minecraft.client.multiplayer.WorldClient
 import net.minecraft.util.text.ITextComponent
 import java.lang.reflect.Method
@@ -29,10 +30,9 @@ class PostInitializationEvent
 
 class ClientTickEvent
 
-
 class RenderEvent(val partialTicks: Float)
 
-class GuiScreenOpenEvent
+class GuiScreenOpenEvent(val screen: GuiScreen)
 
 class GuiScreenCloseEvent
 

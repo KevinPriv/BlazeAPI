@@ -13,7 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinGuiScreen {
     @Inject(method = "initGui", at = @At("HEAD"))
     private void init(CallbackInfo ci) {
-        EventBus.post(new GuiScreenOpenEvent());
+        GuiScreen screen = ((GuiScreen) (Object) this);
+        EventBus.post(new GuiScreenOpenEvent(screen));
     }
 
     @Inject(method = "onGuiClosed", at = @At("HEAD"))
