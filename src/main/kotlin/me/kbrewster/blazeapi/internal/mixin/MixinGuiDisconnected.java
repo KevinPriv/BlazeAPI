@@ -1,6 +1,6 @@
 package me.kbrewster.blazeapi.internal.mixin;
 
-import me.kbrewster.blazeapi.api.event.EventBus;
+import me.kbrewster.blazeapi.BlazeAPI;
 import me.kbrewster.blazeapi.api.event.ServerDisconnectEvent;
 import net.minecraft.client.gui.GuiDisconnected;
 import net.minecraft.client.gui.GuiScreen;
@@ -17,6 +17,6 @@ public class MixinGuiDisconnected {
                       String reasonLocalizationKey,
                       ITextComponent reason,
                       CallbackInfo ci) {
-        EventBus.post(new ServerDisconnectEvent(reason, reasonLocalizationKey));
+        BlazeAPI.getEventBus().post(new ServerDisconnectEvent(reason, reasonLocalizationKey));
     }
 }

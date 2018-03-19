@@ -1,7 +1,7 @@
 package me.kbrewster.blazeapi.internal.mixin;
 
+import me.kbrewster.blazeapi.BlazeAPI;
 import me.kbrewster.blazeapi.api.event.ChatReceivedEvent;
-import me.kbrewster.blazeapi.api.event.EventBus;
 import net.minecraft.client.gui.GuiNewChat;
 import net.minecraft.util.text.ITextComponent;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,7 +19,7 @@ public abstract class MixinGuiNewChat {
     @Inject(method = "printChatMessage", at = @At("HEAD"), cancellable = true)
     private void printChatMessage(ITextComponent chatComponent, CallbackInfo ci) {
         ChatReceivedEvent event = new ChatReceivedEvent(chatComponent);
-        EventBus.post(event);
+        BlazeAPI.getEventBus().post(event);
         if (!event.isCancelled()) {
             this.printChatMessageWithOptionalDeletion(event.getChat(), 0);
         }

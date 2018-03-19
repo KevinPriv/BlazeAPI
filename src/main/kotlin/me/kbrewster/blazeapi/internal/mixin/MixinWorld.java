@@ -1,6 +1,6 @@
 package me.kbrewster.blazeapi.internal.mixin;
 
-import me.kbrewster.blazeapi.api.event.EventBus;
+import me.kbrewster.blazeapi.BlazeAPI;
 import me.kbrewster.blazeapi.api.event.SpawnpointChangeEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -14,7 +14,7 @@ public class MixinWorld {
 
     @Inject(method = "setSpawnPoint", at = @At("HEAD"))
     private void setSpawnPoint(BlockPos pos, CallbackInfo ci) {
-        EventBus.post(new SpawnpointChangeEvent(pos));
+        BlazeAPI.getEventBus().post(new SpawnpointChangeEvent(pos));
     }
 
 }

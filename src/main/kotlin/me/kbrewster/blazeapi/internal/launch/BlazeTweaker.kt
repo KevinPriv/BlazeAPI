@@ -1,12 +1,13 @@
+package me.kbrewster.blazeapi.internal.launch
 
-package me.kbrewster.blazeapi.internal
-
+import me.kbrewster.blazeapi.internal.addons.AddonBootstrap
 import net.minecraft.launchwrapper.ITweaker
 import net.minecraft.launchwrapper.LaunchClassLoader
 import org.spongepowered.asm.launch.MixinBootstrap
 import org.spongepowered.asm.mixin.MixinEnvironment
 import org.spongepowered.asm.mixin.Mixins
 import java.io.File
+
 
 open class BlazeTweaker : ITweaker {
 
@@ -27,8 +28,11 @@ open class BlazeTweaker : ITweaker {
         cl.addClassLoaderExclusion("org.apache.logging.log4j.")
         cl.addClassLoaderExclusion("kotlin.")
 
-        // sets up mixins
+        // initialises bootstraps
         MixinBootstrap.init()
+        AddonBootstrap.init()
+
+        // sets up mixin configurations
         with(MixinEnvironment.getDefaultEnvironment()) {
             Mixins.addConfiguration("mixins.blazeapi.json")
             this.obfuscationContext = "notch"
