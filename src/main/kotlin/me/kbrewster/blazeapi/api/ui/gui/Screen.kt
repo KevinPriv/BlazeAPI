@@ -1,6 +1,7 @@
-package me.kbrewster.blazeapi.api.gui
+package me.kbrewster.blazeapi.api.ui.gui
 
-import me.kbrewster.blazeapi.api.gui.widget.WidgetButton
+import me.kbrewster.blazeapi.api.ui.Renderer
+import me.kbrewster.blazeapi.api.ui.gui.widget.WidgetButton
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiScreen
 
@@ -8,7 +9,7 @@ import net.minecraft.client.gui.GuiScreen
 @Retention(AnnotationRetention.RUNTIME)
 annotation class InjectWidget
 
-open class DisplayScreen : GuiScreen() {
+open class Screen : GuiScreen(), Renderer {
 
     private val buttons = ArrayList<WidgetButton>()
 
@@ -22,7 +23,9 @@ open class DisplayScreen : GuiScreen() {
                 .forEach {field ->
                     field.isAccessible = true
                     val widget = field[this]
-                    buttons.add(widget as WidgetButton)
+                    when (widget) {
+                        is WidgetButton -> buttons.add(widget)
+                    }
                 }
     }
 

@@ -5,3 +5,4 @@ import net.minecraft.client.Minecraft
 
 val mc = Minecraft.getMinecraft()
 
+val fontRenderer = mc.fontRenderer

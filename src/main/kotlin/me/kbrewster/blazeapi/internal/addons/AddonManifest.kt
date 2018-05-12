@@ -41,7 +41,7 @@ class AddonManifest {
      *
      * @return mixin configs
      */
-    val mixinconfigs: List<String>? = null
+    val mixinConfigs: List<String>? = null
 
     /**
      * If the addon includes a <i>tweaker</i>

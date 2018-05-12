@@ -36,7 +36,7 @@ class EventBus {
                 if (subs.containsKey(event)) {
                     // sorts array on insertion
                     subs[event]?.add(EventSubscriber(obj, method, priority))
-                    subs[event] = CopyOnWriteArrayList(subs[event]?.sortedByDescending { it.priority.value })
+                    subs[event]?.sortByDescending { it.priority.value }
                 } else {
                     // event hasn't been added before so it creates a new instance
                     // sorting does not matter here since there is no other elements to compete against

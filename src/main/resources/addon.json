@@ -1,0 +1,8 @@
+{
+  "name": "Dynamic Protocol",
+  "version": "1.0",
+  "mainClass": "me.kbrewster.protocol.DynamicProtocol",
+  "mixinConfigs": [
+    "mixins.protocol.json"
+  ]
+}

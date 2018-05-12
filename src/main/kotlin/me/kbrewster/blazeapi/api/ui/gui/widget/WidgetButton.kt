@@ -1,6 +1,6 @@
-package me.kbrewster.blazeapi.api.gui.widget
+package me.kbrewster.blazeapi.api.ui.gui.widget
 
-import me.kbrewster.blazeapi.api.gui.WidgetButtonCallback
+import me.kbrewster.blazeapi.api.ui.gui.impl.WidgetButtonCallback
 import net.minecraft.client.Minecraft
 import net.minecraft.client.audio.PositionedSoundRecord
 import net.minecraft.client.audio.SoundHandler

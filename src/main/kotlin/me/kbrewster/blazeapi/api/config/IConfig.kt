@@ -1,6 +1,6 @@
 package me.kbrewster.blazeapi.api.config
 
-interface Config {
+interface IConfig {
 
     fun load()
 

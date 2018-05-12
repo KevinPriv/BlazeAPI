@@ -4,14 +4,17 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import me.kbrewster.blazeapi.api.config.*
+import me.kbrewster.blazeapi.api.config.strategy.AnnotationExclusionStrategy
 import java.io.File
 import java.lang.reflect.Field
 
-class GsonConfig(private val file: File) : Config {
+class Config(private val file: File) : IConfig {
 
     private val savableObjects = ArrayList<Any>()
 
     private val gsonRules = GsonBuilder()
+            .addSerializationExclusionStrategy(AnnotationExclusionStrategy())
+            .addDeserializationExclusionStrategy(AnnotationExclusionStrategy())
             .setPrettyPrinting()
             .create()
 

@@ -6,6 +6,8 @@ import me.kbrewster.blazeapi.internal.addons.misc.AddonLoadException
 import me.kbrewster.blazeapi.internal.addons.strategy.AddonLoaderStrategy
 import me.kbrewster.blazeapi.internal.addons.strategy.DefaultAddonLoader
 import me.kbrewster.blazeapi.internal.addons.strategy.WorkspaceAddonLoader
+import me.kbrewster.blazeapi.internal.addons.translate.InstanceTranslator
+import me.kbrewster.blazeapi.internal.addons.translate.MixinTranslator
 import net.minecraft.launchwrapper.Launch
 import java.io.File
 import java.util.*
@@ -27,7 +29,7 @@ object AddonBootstrap {
      * Current (active) environment phase, set to NULL until the
      * phases have been populated
      */
-    var phase: Phase? = null
+    var phase: Phase = Phase.NOT_STARTED
 
     /**
      * All the filtered jars inside of the {@link #modDirectory} folder,
@@ -43,6 +45,15 @@ object AddonBootstrap {
      * Method of loading the addon if inside of the development environment
      */
     private val workspaceLoader = WorkspaceAddonLoader()
+
+    /**
+     * Translators which can change, add or parse an addons manifest
+     * at a certain phase
+     */
+    internal val translators = arrayListOf(
+            InstanceTranslator(),
+            MixinTranslator()
+    )
 
     /**
      * Once the {@link #init} has called it will then be populated
@@ -74,13 +85,14 @@ object AddonBootstrap {
      * In this case we use {@link net.minecraft.launchwrapper.ITweaker}
      */
     fun init() {
-        if (phase != null) {
+        if (phase != Phase.NOT_STARTED) {
             throw AddonLoadException("Cannot initialise bootstrap twice")
         }
 
         phase = Phase.PREINIT
         Launch.classLoader.addClassLoaderExclusion("me.kbrewster.blazeapi.internal.addons.AddonBootstrap")
         Launch.classLoader.addClassLoaderExclusion("me.kbrewster.blazeapi.internal.addons.AddonManifest")
+        Launch.classLoader.addClassLoaderExclusion("me.kbrewster.blazeapi.internal.addons.translate.")
 
         with(addonManifests) {
             val workspaceAddon = loadWorkspaceAddon()
@@ -91,6 +103,9 @@ object AddonBootstrap {
             addAll(loadAddons(loader))
         }
 
+        addonManifests.forEach { manifest ->
+            translators.forEach { translator -> translator.translate(manifest) }
+        }
         phase = Phase.INIT
     }
 
@@ -152,6 +167,11 @@ object AddonBootstrap {
      * Phase the bootstrap is currently in
      */
     enum class Phase {
+
+        /**
+         * It aint started lol?
+         */
+        NOT_STARTED,
 
         /**
          * Loading classes into classloader
