@@ -38,7 +38,7 @@ class Image private constructor(private var imageToLoad: BufferedImage?) {
      * @return The Image object to allow for method chaining
      */
     fun draw(x: Int, y: Int, size: Int): Image {
-        Renderer.drawImage(this, x, y, size)
+        Drawer.drawImage(this, x, y, size)
         return this
     }
 
