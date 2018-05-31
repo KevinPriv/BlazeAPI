@@ -2,8 +2,8 @@ package me.kbrewster.blazeapi.api.event
 
 import net.minecraft.client.gui.GuiScreen
 import net.minecraft.client.multiplayer.WorldClient
-import net.minecraft.util.math.BlockPos
-import net.minecraft.util.text.ITextComponent
+import net.minecraft.util.BlockPos
+import net.minecraft.util.IChatComponent
 import java.lang.reflect.Method
 
 
@@ -61,7 +61,7 @@ class ChatSentEvent(var message: String) : CancellableEvent()
 /**
  * Fired when a chat message is about to be displayed on the client
  */
-class ChatReceivedEvent(var chat: ITextComponent) : CancellableEvent()
+class ChatReceivedEvent(var chat: IChatComponent) : CancellableEvent()
 
 /**
  * Fired once the player joins a server
@@ -71,7 +71,7 @@ class ServerJoinEvent(val ip: String, val port: Int)
 /**
  * Fired once the player disconnects from the server
  */
-class ServerDisconnectEvent(val reason: ITextComponent, val reasonLocalizationKey: String)
+class ServerDisconnectEvent(val reason: IChatComponent, val reasonLocalizationKey: String)
 
 /**
  * Fired once the players spawnpoint as been changed

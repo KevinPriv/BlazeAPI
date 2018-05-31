@@ -1,7 +1,6 @@
 package me.kbrewster.blazeapi.api.ui
 
-import net.minecraft.util.math.MathHelper
-
+import net.minecraft.util.MathHelper
 
 enum class Colours(val red: Int, val green: Int, val blue: Int, val alpha: Int = 255) {
 
@@ -33,10 +32,10 @@ enum class Colours(val red: Int, val green: Int, val blue: Int, val alpha: Int =
      * @return integer color
      */
     fun getRGB(): Int {
-        return (MathHelper.clamp(alpha, 0, 255) * 0x1000000
-                + MathHelper.clamp(red, 0, 255) * 0x10000
-                + MathHelper.clamp(green, 0, 255) * 0x100
-                + MathHelper.clamp(blue, 0, 255))
+        return (MathHelper.clamp_int(alpha, 0, 255) * 0x1000000
+                + MathHelper.clamp_int(red, 0, 255) * 0x10000
+                + MathHelper.clamp_int(green, 0, 255) * 0x100
+                + MathHelper.clamp_int(blue, 0, 255))
     }
 
     companion object {
@@ -51,10 +50,10 @@ enum class Colours(val red: Int, val green: Int, val blue: Int, val alpha: Int =
          * @return integer color
          */
         fun getColour(red: Int, green: Int, blue: Int, alpha: Int): Int {
-            return (MathHelper.clamp(alpha, 0, 255) * 0x1000000
-                    + MathHelper.clamp(red, 0, 255) * 0x10000
-                    + MathHelper.clamp(green, 0, 255) * 0x100
-                    + MathHelper.clamp(blue, 0, 255))
+            return (MathHelper.clamp_int(alpha, 0, 255) * 0x1000000
+                    + MathHelper.clamp_int(red, 0, 255) * 0x10000
+                    + MathHelper.clamp_int(green, 0, 255) * 0x100
+                    + MathHelper.clamp_int(blue, 0, 255))
         }
 
         /**
@@ -63,7 +62,7 @@ enum class Colours(val red: Int, val green: Int, val blue: Int, val alpha: Int =
          * @param color the hex integer
          * @return the color
          */
-        fun getColor(color: Int): Colours {
+        fun getColour(color: Int): Colours {
             when (color) {
                 0 -> return BLACK
                 1 -> return DARK_BLUE

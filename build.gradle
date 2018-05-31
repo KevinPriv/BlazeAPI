@@ -22,7 +22,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.30"
         classpath 'org.spongepowered:mixingradle:0.4-SNAPSHOT'
     }
@@ -42,9 +42,9 @@ group= "me.kbrewster.blazeapi" // http://maven.apache.org/guides/mini/guide-nami
 archivesBaseName = "Blaze API"
 
 minecraft {
-    version = "1.12.2"
+    version = "1.8.9"
     tweakClass = "me.kbrewster.blazeapi.api.internal.BlazeTweaker"
-    mappings = "snapshot_20170906"
+    mappings = "stable_20"
     runDir = 'run'
 }
 

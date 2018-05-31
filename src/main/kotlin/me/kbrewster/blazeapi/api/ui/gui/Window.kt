@@ -19,7 +19,7 @@ class Window(val title: String = "Empty", val scheme: ColourScheme = ColourSchem
         Gui.drawRect(this.windowX, this.windowY,
                 this.windowWidth, this.windowY + 11,
                 scheme.tertiary.rgb)
-        this.drawString(fontRenderer, title, windowX, windowY, Color.BLACK.rgb)
+        this.drawString(fontRendererObj, title, windowX, windowY, Color.BLACK.rgb)
 
         // draws body of the window
         Gui.drawRect(this.windowX, this.windowY + 11,

@@ -4,8 +4,7 @@ import me.kbrewster.blazeapi.client.fontRenderer
 import me.kbrewster.blazeapi.client.mc
 import net.minecraft.client.gui.ScaledResolution
 import net.minecraft.client.renderer.GlStateManager
-import net.minecraft.util.math.MathHelper
-
+import net.minecraft.util.MathHelper
 
 interface Renderer {
 
@@ -42,10 +41,10 @@ interface Renderer {
          * @return integer color
          */
         fun color(red: Int, green: Int, blue: Int, alpha: Int): Int {
-            return (MathHelper.clamp(alpha, 0, 255) * 0x1000000
-                    + MathHelper.clamp(red, 0, 255) * 0x10000
-                    + MathHelper.clamp(green, 0, 255) * 0x100
-                    + MathHelper.clamp(blue, 0, 255))
+            return (MathHelper.clamp_int(alpha, 0, 255) * 0x1000000
+                    + MathHelper.clamp_int(red, 0, 255) * 0x10000
+                    + MathHelper.clamp_int(green, 0, 255) * 0x100
+                    + MathHelper.clamp_int(blue, 0, 255))
         }
 
         /**
@@ -72,9 +71,9 @@ interface Renderer {
             val green = ((Math.sin(step / speed + 2 * Math.PI / 3) + 0.75) * 170).toInt()
             val blue = ((Math.sin(step / speed + 4 * Math.PI / 3) + 0.75) * 170).toInt()
             return (-0x1000000
-                    + MathHelper.clamp(red, 0, 255) * 0x10000
-                    + MathHelper.clamp(green, 0, 255) * 0x100
-                    + MathHelper.clamp(blue, 0, 255))
+                    + MathHelper.clamp_int(red, 0, 255) * 0x10000
+                    + MathHelper.clamp_int(green, 0, 255) * 0x100
+                    + MathHelper.clamp_int(blue, 0, 255))
         }
 
         /**
@@ -149,10 +148,10 @@ interface Renderer {
          */
         fun colorize(red: Int, green: Int, blue: Int, alpha: Int) {
             GlStateManager.color(
-                    MathHelper.clamp(red, 0, 255).toFloat(),
-                    MathHelper.clamp(green, 0, 255).toFloat(),
-                    MathHelper.clamp(blue, 0, 255).toFloat(),
-                    MathHelper.clamp(alpha, 0, 255).toFloat()
+                    MathHelper.clamp_int(red, 0, 255).toFloat(),
+                    MathHelper.clamp_int(green, 0, 255).toFloat(),
+                    MathHelper.clamp_int(blue, 0, 255).toFloat(),
+                    MathHelper.clamp_int(alpha, 0, 255).toFloat()
             )
         }
 

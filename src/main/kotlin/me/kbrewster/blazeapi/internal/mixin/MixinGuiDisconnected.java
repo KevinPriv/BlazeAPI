@@ -4,7 +4,7 @@ import me.kbrewster.blazeapi.BlazeAPI;
 import me.kbrewster.blazeapi.api.event.ServerDisconnectEvent;
 import net.minecraft.client.gui.GuiDisconnected;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.IChatComponent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -15,7 +15,7 @@ public class MixinGuiDisconnected {
     @Inject(method = "<init>", at = @At("RETURN"))
     private void init(GuiScreen screen,
                       String reasonLocalizationKey,
-                      ITextComponent reason,
+                      IChatComponent reason,
                       CallbackInfo ci) {
         BlazeAPI.getEventBus().post(new ServerDisconnectEvent(reason, reasonLocalizationKey));
     }

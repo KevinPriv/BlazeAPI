@@ -5,7 +5,6 @@ import net.minecraft.client.Minecraft
 import net.minecraft.client.audio.PositionedSoundRecord
 import net.minecraft.client.audio.SoundHandler
 import net.minecraft.client.renderer.GlStateManager
-import net.minecraft.init.SoundEvents
 import net.minecraft.util.ResourceLocation
 import net.minecraft.client.gui.GuiButton as MinecraftButton
 
@@ -45,19 +44,20 @@ open class WidgetButton
         return i
     }
 
+
     /**
      * Draws this button to the screen.
      */
-    fun drawButton(mc: Minecraft, mouseX: Int, mouseY: Int, partialTicks: Float) {
+    fun drawButton(mc: Minecraft, mouseX: Int, mouseY: Int) {
         if (this.visible) {
-            val fontrenderer = mc.fontRenderer
+            val fontrenderer = mc.fontRendererObj
             mc.textureManager.bindTexture(BUTTON_TEXTURES)
             GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f)
             this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height
             val i = this.getHoverState(this.hovered)
             GlStateManager.enableBlend()
-            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO)
-            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA)
+            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0)
+            GlStateManager.blendFunc(770, 771)
             this.drawTexturedModalRect(this.x, this.y, 0, 46 + i * 20, this.width / 2, this.height)
             this.drawTexturedModalRect(this.x + this.width / 2, this.y, 200 - this.width / 2, 46 + i * 20, this.width / 2, this.height)
             this.mouseDragged(mc, mouseX, mouseY)
@@ -101,7 +101,7 @@ open class WidgetButton
     fun drawButtonForegroundLayer(mouseX: Int, mouseY: Int) {}
 
     fun playPressSound(soundHandlerIn: SoundHandler) {
-        soundHandlerIn.playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0f))
+        soundHandlerIn.playSound(PositionedSoundRecord.create(ResourceLocation("gui.button.press"), 1.0f))
     }
 
 }

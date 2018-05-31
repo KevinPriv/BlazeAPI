@@ -13,6 +13,22 @@ import javax.imageio.ImageIO
 
 class Image private constructor(private var imageToLoad: BufferedImage?) {
 
+    /**
+     * -- GETTER --
+     * Gets the image's texture width.
+     *
+     * @return The image's texture width
+     */
+    var textureWidth: Int = 0
+
+    /**
+     * -- GETTER --
+     * Gets the image's texture height.
+     *
+     * @return The image's texture height
+     */
+    var textureHeight: Int = 0
+
     var texture: DynamicTexture? = null
 
     init {
@@ -26,19 +42,25 @@ class Image private constructor(private var imageToLoad: BufferedImage?) {
     @Suppress("UNUSED_PARAMETER")
     @InvokeEvent(Priority.HIGHEST)
     private fun load(event: ClientTickEvent) {
-        if (texture == null) {
+        if (imageToLoad != null) {
             texture = DynamicTexture(imageToLoad!!)
+            this.textureWidth = imageToLoad!!.width
+            this.textureHeight = imageToLoad!!.height
+            imageToLoad = null
             EVENTBUS.unregister(this) // texture has been loaded
         }
     }
 
     /**
-     * Draws the image on screen
+     * Draws the image on screen using the texture width and height.
      *
+     * @param x the x position
+     * @param y the y position
      * @return The Image object to allow for method chaining
      */
-    fun draw(x: Int, y: Int, size: Int): Image {
-        Drawer.drawImage(this, x, y, size)
+    fun draw(x: Double, y: Double): Image {
+        Drawer.drawImage(this, x, y, this.textureWidth.toDouble(), this.textureHeight.toDouble())
+
         return this
     }
 

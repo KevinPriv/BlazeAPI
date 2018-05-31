@@ -20,7 +20,7 @@ val VERSION = "1.0.0"
 /**
  * Minecraft version the API is currently running
  */
-val MC_VERSION = "1.12"
+val MC_VERSION = "1.8.9"
     @JvmName("getMCVersion") get
 
 /**
@@ -44,5 +44,3 @@ val EVENTBUS = EventBus()
 val LOADED_ADDONS = ArrayList<Addon>()
     @JvmName("getLoadedAddons") get
 
-
-o

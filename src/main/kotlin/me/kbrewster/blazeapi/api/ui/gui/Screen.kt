@@ -35,7 +35,7 @@ open class Screen : GuiScreen(), Renderer {
     override fun drawScreen(mouseX: Int, mouseY: Int, partialTicks: Float) {
         super.drawScreen(mouseX, mouseY, partialTicks)
         for (i in this.buttons.indices) {
-            this.buttons[i].drawButton(this.mc, mouseX, mouseY, partialTicks)
+            this.buttons[i].drawButton(this.mc, mouseX, mouseY)
         }
     }
 
@@ -54,7 +54,7 @@ open class Screen : GuiScreen(), Renderer {
     override fun setWorldAndResolution(mc: Minecraft?, width: Int, height: Int) {
         this.mc = mc
         this.itemRender = mc!!.renderItem
-        this.fontRenderer = mc.fontRenderer
+        this.fontRendererObj = mc.fontRendererObj
         this.width = width
         this.height = height
         this.buttonList.clear()

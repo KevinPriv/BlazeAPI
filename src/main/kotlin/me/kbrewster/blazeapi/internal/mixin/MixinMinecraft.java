@@ -15,13 +15,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Minecraft.class)
 public abstract class MixinMinecraft {
 
-    @Inject(method = "init", at = @At("HEAD"))
+    @Inject(method = "startGame", at = @At("HEAD"))
     private void preInit(CallbackInfo ci) {
         AddonMinecraftBootstrap.init();
         BlazeAPI.getEventBus().post(new PreInitializationEvent());
     }
 
-    @Inject(method = "init", at = @At("RETURN"))
+    @Inject(method = "startGame", at = @At("RETURN"))
     private void postInit(CallbackInfo ci) {
         BlazeAPI.getEventBus().post(new InitializationEvent());
     }

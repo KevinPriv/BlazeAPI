@@ -5,6 +5,6 @@ import net.minecraft.client.Minecraft
 
 val mc = Minecraft.getMinecraft()
 
-val thePlayer = mc.player
+val thePlayer = mc.thePlayer
 
-val fontRenderer = mc.fontRenderer
+val fontRenderer = mc.fontRendererObj
