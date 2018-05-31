@@ -7,18 +7,18 @@ package me.kbrewster.blazeapi.internal.addons
  * @since 1.0
  * @author Kevin Brewster
  */
-interface IAddon {
+interface Addon {
 
     /**
-     * Invoked once the plugin has successfully loaded
+     * Invoked once the plugin has successfully loaded or enabled
      * {@see me.kbrewster.blazeapi.internal.addons.AddonMinecraftBootstrap#init}
      */
-    fun onLoad()
+    fun onEnable()
 
     /**
-     * Invoked once the game has been closed
+     * Invoked once the game has been closed or disabled
      * this is executed at the start of {@link net.minecraft.client.Minecraft#shutdown}
      */
-    fun onClose()
+    fun onDisable()
 
 }

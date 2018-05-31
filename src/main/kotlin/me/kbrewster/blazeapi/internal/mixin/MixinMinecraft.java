@@ -2,8 +2,8 @@ package me.kbrewster.blazeapi.internal.mixin;
 
 import me.kbrewster.blazeapi.BlazeAPI;
 import me.kbrewster.blazeapi.api.event.*;
+import me.kbrewster.blazeapi.internal.addons.Addon;
 import me.kbrewster.blazeapi.internal.addons.AddonMinecraftBootstrap;
-import me.kbrewster.blazeapi.internal.addons.IAddon;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import org.spongepowered.asm.mixin.Mixin;
@@ -40,7 +40,7 @@ public abstract class MixinMinecraft {
 
     @Inject(method = "shutdown", at = @At("HEAD"))
     private void shutdown(CallbackInfo ci) {
-        BlazeAPI.getLoadedAddons().forEach(IAddon::onClose);
+        BlazeAPI.getLoadedAddons().forEach(Addon::onDisable);
         BlazeAPI.getEventBus().post(new ShutdownEvent());
     }
 

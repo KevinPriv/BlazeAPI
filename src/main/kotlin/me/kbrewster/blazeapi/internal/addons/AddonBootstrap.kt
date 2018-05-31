@@ -180,7 +180,7 @@ object AddonBootstrap {
         PREINIT,
 
         /**
-         * Creates instances of main classes and executes onLoad
+         * Creates instances of main classes and executes onEnable
          */
         INIT,
 

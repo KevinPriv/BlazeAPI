@@ -29,12 +29,12 @@ object AddonMinecraftBootstrap {
 
         val loaded = AddonBootstrap.addonManifests
                 .map { Class.forName(it.mainClass).newInstance() }
-                .filter { it is IAddon }
-                .map { it as IAddon }
+                .filter { it is Addon }
+                .map { it as Addon }
                 .toCollection(ArrayList())
 
         LOADED_ADDONS.addAll(loaded)
-        LOADED_ADDONS.forEach(IAddon::onLoad)
+        LOADED_ADDONS.forEach(Addon::onEnable)
         AddonBootstrap.phase = AddonBootstrap.Phase.DEFAULT
     }
 

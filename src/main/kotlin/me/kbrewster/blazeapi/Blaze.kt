@@ -2,7 +2,7 @@
 package me.kbrewster.blazeapi
 
 import me.kbrewster.blazeapi.api.event.EventBus
-import me.kbrewster.blazeapi.internal.addons.IAddon
+import me.kbrewster.blazeapi.internal.addons.Addon
 import org.apache.logging.log4j.LogManager
 
 /**
@@ -41,7 +41,8 @@ val EVENTBUS = EventBus()
  * List of loaded addons
  * This will be populated at the end of {@link me.kbrewster.blazeapi.internal.addons.AddonBootstrap.Phase#INIT}
  */
-val LOADED_ADDONS = ArrayList<IAddon>()
+val LOADED_ADDONS = ArrayList<Addon>()
     @JvmName("getLoadedAddons") get
 
 
+o
