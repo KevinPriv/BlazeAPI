@@ -51,6 +51,7 @@ open class Screen : GuiScreen(), Renderer {
             }
         }
     }
+
     override fun setWorldAndResolution(mc: Minecraft?, width: Int, height: Int) {
         this.mc = mc
         this.itemRender = mc!!.renderItem
