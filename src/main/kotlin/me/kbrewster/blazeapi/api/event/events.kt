@@ -54,6 +54,16 @@ class GuiScreenOpenEvent(val screen: GuiScreen)
 class GuiScreenCloseEvent
 
 /**
+ * Fired once the player left clicks
+ */
+class LeftClickEvent
+
+/**
+ * Fired once the player right clicks
+ */
+class RightClickEvent
+
+/**
  * Fired when a chat packet is about to be sent to the server
  */
 class ChatSentEvent(var message: String) : CancellableEvent()

@@ -38,6 +38,16 @@ public abstract class MixinMinecraft {
         }
     }
 
+    @Inject(method = "clickMouse", at = @At("RETURN"))
+    private void clickMouse(CallbackInfo ci) {
+        BlazeAPI.getEventBus().post(new LeftClickEvent());
+    }
+
+    @Inject(method = "rightClickMouse", at = @At("RETURN"))
+    private void rightClickMouse(CallbackInfo ci) {
+        BlazeAPI.getEventBus().post(new RightClickEvent());
+    }
+
     @Inject(method = "shutdown", at = @At("HEAD"))
     private void shutdown(CallbackInfo ci) {
         BlazeAPI.getLoadedAddons().forEach(Addon::onDisable);
