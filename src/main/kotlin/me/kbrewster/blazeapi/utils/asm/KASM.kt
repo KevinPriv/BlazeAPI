@@ -22,7 +22,7 @@ import org.spongepowered.asm.lib.tree.*
  */
 fun appendReturn(insns: InsnList, methodDesc: String) {
     val retType = Type.getReturnType(methodDesc)
-    when (retType.getSort()) {
+    when (retType.sort) {
         Type.BOOLEAN, Type.BYTE, Type.SHORT, Type.INT -> insns.add(InsnNode(ICONST_0))
         Type.LONG -> insns.add(InsnNode(LCONST_0))
         Type.FLOAT -> insns.add(InsnNode(FCONST_0))
@@ -45,7 +45,7 @@ fun appendReturn(insns: InsnList, methodDesc: String) {
  */
 fun getMethod(cn: ClassNode, name: String, desc: String): MethodNode? {
     for (mn in cn.methods) {
-        if (mn.name.equals(name) && mn.desc.equals(desc)) {
+        if (mn.name == name && mn.desc == desc) {
             return mn
         }
     }
@@ -65,7 +65,7 @@ fun getMethod(cn: ClassNode, name: String, desc: String): MethodNode? {
  */
 fun getField(cn: ClassNode, name: String, desc: String): FieldNode? {
     for (fn in cn.fields) {
-        if (fn.name.equals(name) && fn.desc.equals(desc)) {
+        if (fn.name == name && fn.desc == desc) {
             return fn
         }
     }

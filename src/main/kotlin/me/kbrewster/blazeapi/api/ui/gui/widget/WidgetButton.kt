@@ -8,9 +8,7 @@ import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.util.ResourceLocation
 import net.minecraft.client.gui.GuiButton as MinecraftButton
 
-open class WidgetButton
-    @JvmOverloads constructor(
-            val buttonId: Int,
+open class WidgetButton(
             override var x: Int,
             override var y: Int,
             override var width: Int = 200,
