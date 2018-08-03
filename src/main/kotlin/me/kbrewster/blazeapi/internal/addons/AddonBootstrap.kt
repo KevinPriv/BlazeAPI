@@ -6,8 +6,9 @@ import me.kbrewster.blazeapi.internal.addons.misc.AddonLoadException
 import me.kbrewster.blazeapi.internal.addons.strategy.AddonLoaderStrategy
 import me.kbrewster.blazeapi.internal.addons.strategy.DefaultAddonLoader
 import me.kbrewster.blazeapi.internal.addons.strategy.WorkspaceAddonLoader
-import me.kbrewster.blazeapi.internal.addons.translate.InstanceTranslator
 import me.kbrewster.blazeapi.internal.addons.translate.MixinTranslator
+import me.kbrewster.blazeapi.internal.addons.translate.TransformerTranslator
+import me.kbrewster.blazeapi.internal.addons.translate.TweakerTranslator
 import net.minecraft.launchwrapper.Launch
 import java.io.File
 import java.util.*
@@ -51,7 +52,8 @@ object AddonBootstrap {
      * at a certain phase
      */
     internal val translators = arrayListOf(
-            InstanceTranslator(),
+            TweakerTranslator(),
+            TransformerTranslator(),
             MixinTranslator()
     )
 

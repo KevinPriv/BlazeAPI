@@ -42,9 +42,8 @@ group= "me.kbrewster.blazeapi" // http://maven.apache.org/guides/mini/guide-nami
 archivesBaseName = "Blaze API"
 
 minecraft {
-    version = "1.8.9"
+    version = "1.13-pre5"
     tweakClass = "me.kbrewster.blazeapi.api.internal.BlazeTweaker"
-    mappings = "stable_20"
     runDir = 'run'
 }
 

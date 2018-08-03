@@ -4,6 +4,7 @@
 @file:JvmName("KASM")
 package me.kbrewster.blazeapi.utils.asm
 
+import org.spongepowered.asm.lib.ClassReader
 import org.spongepowered.asm.lib.MethodVisitor
 import org.spongepowered.asm.lib.Opcodes.*
 import org.spongepowered.asm.lib.Type
@@ -70,6 +71,30 @@ fun getField(cn: ClassNode, name: String, desc: String): FieldNode? {
         }
     }
     return null
+}
+
+/**
+ * Creates a `ClassNode` from specified bytecode
+ *
+ * @param bytecode Class bytecode
+ * @return ClassNode
+ */
+fun getClassNode(bytecode: ByteArray?): ClassNode? {
+    if (bytecode == null)
+        return null
+
+    val cn = ClassNode()
+    ClassReader(bytecode).accept(cn, 0)
+    return cn
+}
+
+/**
+ * Instruction builder for kotlin
+ */
+fun newInsnList(init: InsnList.() -> Unit): InsnList {
+    val list = InsnList()
+    list.init()
+    return list
 }
 
 /**

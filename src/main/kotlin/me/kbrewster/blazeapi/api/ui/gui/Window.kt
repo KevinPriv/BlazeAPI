@@ -1,34 +1,61 @@
 package me.kbrewster.blazeapi.api.ui.gui
 
+import me.kbrewster.blazeapi.api.font.CustomFonts
 import net.minecraft.client.gui.Gui
 import java.awt.Color
 
-class Window(val title: String = "Empty", val scheme: ColourScheme = ColourScheme()) : Screen() {
+abstract class Window @JvmOverloads constructor(val title: String = "Empty", val scheme: ColourScheme = ColourScheme()) : Screen() {
 
     val bar = Bar(this)
 
-    val windowX = 0
-    val windowY = 0
-    val windowWidth = this.width
-    val windowHeight = this.height
+    var windowX = 0
+    var windowY = 0
+    var windowWidth = this.width
+    var windowHeight = this.height
 
-    val focused = true
-    val movable = true
+    var focused = true
+    var movable = false
 
     override fun drawScreen(mouseX: Int, mouseY: Int, partialTicks: Float) {
         super.drawScreen(mouseX, mouseY, partialTicks)
 
-        // draws body of the window
-        Gui.drawRect(this.windowX, this.windowY + 11,
-                this.windowWidth, this.windowHeight,
-                scheme.tertiary.rgb)
-        bar.draw(mouseX, mouseY, partialTicks)
-
+        drawWindow(windowX, windowY, mouseX, mouseY, partialTicks)
     }
+
+    private fun drawBody() {
+        Gui.drawRect(this.windowX, this.windowY + 11,
+                this.windowX + this.windowWidth, this.windowY + this.windowHeight,
+                scheme.primary.rgb)
+    }
+
+    fun drawWindow(windowX: Int, windowY: Int, mouseX: Int, mouseY: Int, partialTicks: Float) {
+        // draws body of the window
+        this.drawBody()
+        this.bar.draw(mouseX, mouseY, partialTicks)
+    }
+
 
     override fun mouseClicked(mouseX: Int, mouseY: Int, mouseButton: Int) {
         super.mouseClicked(mouseX, mouseY, mouseButton)
         // todo: make window movable
+    }
+
+    fun centerWindow() {
+        this.windowX = (this.width / 2) - (this.windowWidth / 2)
+        this.windowY = (this.height / 2) - (this.windowHeight / 2)
+    }
+
+    fun setFullscreen(fullscreen: Boolean) {
+        if (fullscreen) {
+            this.windowX = 0
+            this.windowY = 0
+            this.windowWidth = this.width
+            this.windowHeight = this.height
+        } else {
+            this.windowHeight = (this.height / 4) * 3
+            this.windowWidth = (this.width / 4) * 3
+            this.centerWindow()
+        }
     }
 
     class Bar(val window: Window) {
@@ -36,9 +63,10 @@ class Window(val title: String = "Empty", val scheme: ColourScheme = ColourSchem
         fun draw(mouseX: Int, mouseY: Int, partialTicks: Float) {
             with(window) {
                 Gui.drawRect(this.windowX, this.windowY,
-                        this.windowWidth, this.windowY + 11,
+                        this.windowX + this.windowWidth, this.windowY + 11,
                         scheme.tertiary.rgb)
-                this.drawString(fontRendererObj, title, windowX, windowY, Color.BLACK.rgb)
+                CustomFonts.ARIAL.fontRenderer.drawString(title, windowX + 1, windowY + 1,
+                        (if (this.focused) Color.BLACK else Color.LIGHT_GRAY).rgb)
 
             }
         }

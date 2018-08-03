@@ -3,6 +3,7 @@ package me.kbrewster.blazeapi
 
 import me.kbrewster.blazeapi.api.event.EventBus
 import me.kbrewster.blazeapi.internal.addons.Addon
+import me.kbrewster.blazeapi.internal.launch.transformers.impl.ITransformer
 import org.apache.logging.log4j.LogManager
 
 /**
@@ -24,7 +25,7 @@ val MC_VERSION = "1.8.9"
     @JvmName("getMCVersion") get
 
 /**
- * Logger
+ * BlazeAPI Logger
  */
 val LOGGER = LogManager.getLogger(ID)
     @JvmName("getLogger") get
@@ -44,3 +45,8 @@ val EVENTBUS = EventBus()
 val LOADED_ADDONS = ArrayList<Addon>()
     @JvmName("getLoadedAddons") get
 
+/**
+ * Transformers that will be ran at the end of the BlazeTweaker
+ */
+val TRANSFORMERS: Set<ITransformer> = LinkedHashSet()
+    @JvmName("getTransformers") get

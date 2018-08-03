@@ -1,4 +1,4 @@
-package me.kbrewster.blazeapi.internal.addons.translate
+package me.kbrewster.blazeapi.internal.addons.translate.impl
 
 import me.kbrewster.blazeapi.internal.addons.AddonManifest
 

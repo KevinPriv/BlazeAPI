@@ -62,25 +62,23 @@ enum class Colours(val red: Int, val green: Int, val blue: Int, val alpha: Int =
          * @param color the hex integer
          * @return the color
          */
-        fun getColour(color: Int): Colours {
-            when (color) {
-                0 -> return BLACK
-                1 -> return DARK_BLUE
-                2 -> return DARK_GREEN
-                3 -> return DARK_AQUA
-                4 -> return DARK_RED
-                5 -> return DARK_PURPLE
-                6 -> return GOLD
-                7 -> return GRAY
-                8 -> return DARK_GRAY
-                9 -> return BLUE
-                10 -> return GREEN
-                11 -> return AQUA
-                12 -> return RED
-                13 -> return LIGHT_PURPLE
-                14 -> return YELLOW
-                else -> return WHITE
-            }
+        fun getColour(color: Int): Colours = when (color) {
+            0 -> BLACK
+            1 -> DARK_BLUE
+            2 -> DARK_GREEN
+            3 -> DARK_AQUA
+            4 -> DARK_RED
+            5 -> DARK_PURPLE
+            6 -> GOLD
+            7 -> GRAY
+            8 -> DARK_GRAY
+            9 -> BLUE
+            10 -> GREEN
+            11 -> AQUA
+            12 -> RED
+            13 -> LIGHT_PURPLE
+            14 -> YELLOW
+            else -> WHITE
         }
     }
 

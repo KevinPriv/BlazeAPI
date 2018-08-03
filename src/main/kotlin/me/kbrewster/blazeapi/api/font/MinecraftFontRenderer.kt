@@ -130,7 +130,7 @@ class MinecraftFontRenderer(font: Font, antiAlias: Boolean, charOffset: Int) : F
             var underline = false
 
             for (index in parts.indices) {
-                if (parts[index].length <= 0) {
+                if (parts[index].isEmpty()) {
                     continue
                 }
                 if (index == 0) {

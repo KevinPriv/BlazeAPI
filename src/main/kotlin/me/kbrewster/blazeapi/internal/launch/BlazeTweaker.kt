@@ -1,7 +1,7 @@
 package me.kbrewster.blazeapi.internal.launch
 
 import me.kbrewster.blazeapi.internal.addons.AddonBootstrap
-import me.kbrewster.blazeapi.utils.net.URLReader
+import me.kbrewster.blazeapi.internal.launch.transformers.BlazeTransformer
 import net.minecraft.launchwrapper.ITweaker
 import net.minecraft.launchwrapper.LaunchClassLoader
 import org.spongepowered.asm.launch.MixinBootstrap
@@ -33,16 +33,15 @@ open class BlazeTweaker : ITweaker {
         MixinBootstrap.init()
         AddonBootstrap.init()
 
+        // registers transformers
+        cl.registerTransformer(BlazeTransformer::class.java.name)
+
         // sets up mixin configurations
         with(MixinEnvironment.getDefaultEnvironment()) {
             Mixins.addConfiguration("mixins.blazeapi.json")
             this.obfuscationContext = "notch"
             this.side = MixinEnvironment.Side.CLIENT
         }
-
-        val url = URLReader("https://api.hyperium.cc/capeAtlas")
-        println(url.responseType)
-        print(url.json)
     }
 
 

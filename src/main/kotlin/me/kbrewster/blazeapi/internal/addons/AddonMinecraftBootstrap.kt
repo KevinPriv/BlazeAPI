@@ -1,5 +1,7 @@
 package me.kbrewster.blazeapi.internal.addons
 
+import com.github.kevinpriv.GuiTest
+import me.kbrewster.blazeapi.EVENTBUS
 import me.kbrewster.blazeapi.LOADED_ADDONS
 import me.kbrewster.blazeapi.internal.addons.misc.AddonLoadException
 import java.util.*
@@ -36,6 +38,7 @@ object AddonMinecraftBootstrap {
         LOADED_ADDONS.addAll(loaded)
         LOADED_ADDONS.forEach(Addon::onEnable)
         AddonBootstrap.phase = AddonBootstrap.Phase.DEFAULT
+        EVENTBUS.register(GuiTest())
     }
 
 }

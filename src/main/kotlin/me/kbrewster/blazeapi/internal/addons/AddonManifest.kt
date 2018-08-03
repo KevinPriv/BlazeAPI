@@ -44,6 +44,14 @@ class AddonManifest {
     val mixinConfigs: List<String>? = null
 
     /**
+     * List of simple class transformers
+     * e.g. me.kbrewster.transformers.
+     *
+     * <b>IT MUST IMPLEMENT {@link me.kbrewster.blazeapi.internal.launch.transformers.impl.ITransformer}!</b>
+     */
+    val transformers: List<String>? = null
+
+    /**
      * If the addon includes a <i>tweaker</i>
      * you can specify it here and it will
      * add it to the launchwrapper.
@@ -52,4 +60,5 @@ class AddonManifest {
      * @return tweaker-class
      */
     val tweakerClass: String? = null
+
 }
