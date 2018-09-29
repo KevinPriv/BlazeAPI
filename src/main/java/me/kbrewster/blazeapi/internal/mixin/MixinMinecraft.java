@@ -1,7 +1,7 @@
 package me.kbrewster.blazeapi.internal.mixin;
 
 import me.kbrewster.blazeapi.BlazeAPI;
-import me.kbrewster.blazeapi.api.events.*;
+import me.kbrewster.blazeapi.events.*;
 import me.kbrewster.blazeapi.internal.addons.Addon;
 import me.kbrewster.blazeapi.internal.addons.AddonMinecraftBootstrap;
 import net.minecraft.client.Minecraft;

@@ -1,4 +1,4 @@
-package me.kbrewster.blazeapi.api.events
+package me.kbrewster.blazeapi.events
 
 import me.kbrewster.eventbus.AbstractEvent
 import net.minecraft.client.gui.GuiScreen

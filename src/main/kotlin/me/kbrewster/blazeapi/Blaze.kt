@@ -35,11 +35,11 @@ val LOGGER = LogManager.getLogger(ID)
  * Minecraft events are registered and posted
  * {@link me.kbrewster.blazeapi.api.event.EventBus}
  */
-val EVENTBUS = DefaultEventBus()
+val EVENT_BUS = DefaultEventBus()
     @JvmName("getEventBus") get
 
 /**
- * List of loaded addons
+ * List of loaded addonsas
  * This will be populated at the end of {@link me.kbrewster.blazeapi.internal.addons.AddonBootstrap.Phase#INIT}
  */
 val LOADED_ADDONS = ArrayList<Addon>()

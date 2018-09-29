@@ -1,7 +1,7 @@
 package me.kbrewster.blazeapi.internal.mixin;
 
-import me.kbrewster.blazeapi.api.events.ChatSentEvent;
-import me.kbrewster.blazeapi.api.events.RespawnPlayerEvent;
+import me.kbrewster.blazeapi.events.ChatSentEvent;
+import me.kbrewster.blazeapi.events.RespawnPlayerEvent;
 import net.minecraft.client.entity.EntityPlayerSP;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

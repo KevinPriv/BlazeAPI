@@ -1,7 +1,7 @@
 package me.kbrewster.blazeapi.internal.mixin;
 
 import me.kbrewster.blazeapi.BlazeAPI;
-import me.kbrewster.blazeapi.api.events.ServerDisconnectEvent;
+import me.kbrewster.blazeapi.events.ServerDisconnectEvent;
 import net.minecraft.client.gui.GuiDisconnected;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.IChatComponent;

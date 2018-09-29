@@ -1,7 +1,7 @@
 package me.kbrewster.blazeapi.internal.mixin;
 
 import me.kbrewster.blazeapi.BlazeAPI;
-import me.kbrewster.blazeapi.api.events.ChatReceivedEvent;
+import me.kbrewster.blazeapi.events.ChatReceivedEvent;
 import net.minecraft.client.gui.GuiNewChat;
 import net.minecraft.util.IChatComponent;
 import org.spongepowered.asm.mixin.Mixin;
