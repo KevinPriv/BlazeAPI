@@ -74,7 +74,7 @@ fun getField(cn: ClassNode, name: String, desc: String): FieldNode? {
 }
 
 /**
- * Creates a `ClassNode` from specified bytecode
+ * Creates a `ClassNode` from a classes bytearray
  *
  * @param bytecode Class bytecode
  * @return ClassNode

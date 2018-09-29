@@ -1,10 +1,11 @@
 package me.kbrewster.blazeapi.api.ui.gui
 
 import me.kbrewster.blazeapi.api.font.CustomFonts
+import me.kbrewster.blazeapi.api.ui.Image
 import net.minecraft.client.gui.Gui
 import java.awt.Color
 
-abstract class Window @JvmOverloads constructor(val title: String = "Empty", val scheme: ColourScheme = ColourScheme()) : Screen() {
+abstract class Window @JvmOverloads constructor(val title: String = "Empty", val icon: Image? = null, val scheme: ColourScheme = ColourScheme()) : Screen() {
 
     val bar = Bar(this)
 
@@ -13,8 +14,16 @@ abstract class Window @JvmOverloads constructor(val title: String = "Empty", val
     var windowWidth = this.width
     var windowHeight = this.height
 
-    var focused = true
-    var movable = false
+    var focused = false
+
+    init {
+        icon?.let {
+            val size = 2 shl 4 // 32 x 32 icon
+            if (it.textureWidth and it.textureHeight != size) {
+                throw Exception("Texture Width and Height are not equal to $size!")
+            }
+        }
+    }
 
     override fun drawScreen(mouseX: Int, mouseY: Int, partialTicks: Float) {
         super.drawScreen(mouseX, mouseY, partialTicks)
@@ -37,7 +46,13 @@ abstract class Window @JvmOverloads constructor(val title: String = "Empty", val
 
     override fun mouseClicked(mouseX: Int, mouseY: Int, mouseButton: Int) {
         super.mouseClicked(mouseX, mouseY, mouseButton)
-        // todo: make window movable
+        this.bar.onMouseClicked(mouseX, mouseY, mouseButton)
+        // todo: make window isMovable
+    }
+
+    override fun mouseReleased(mouseX: Int, mouseY: Int, state: Int) {
+        super.mouseReleased(mouseX, mouseY, state)
+        this.bar.mouseReleased(mouseX, mouseY, state)
     }
 
     fun centerWindow() {
@@ -60,6 +75,10 @@ abstract class Window @JvmOverloads constructor(val title: String = "Empty", val
 
     class Bar(val window: Window) {
 
+        var isMovable = true
+
+        var isMoving = false
+
         fun draw(mouseX: Int, mouseY: Int, partialTicks: Float) {
             with(window) {
                 Gui.drawRect(this.windowX, this.windowY,
@@ -67,13 +86,28 @@ abstract class Window @JvmOverloads constructor(val title: String = "Empty", val
                         scheme.tertiary.rgb)
                 CustomFonts.ARIAL.fontRenderer.drawString(title, windowX + 1, windowY + 1,
                         (if (this.focused) Color.BLACK else Color.LIGHT_GRAY).rgb)
-
+                if (isMoving) {
+                    this.windowX = mouseX
+                    this.windowY = mouseY
+                }
             }
         }
 
         fun onMouseClicked(mouseX: Int, mouseY: Int, mouseButton: Int) {
-
+            if (mouseButton == 0) {
+                with(window) {
+                    isMoving = mouseX >= windowX && mouseX <= windowX + windowWidth && isMovable &&
+                            mouseY >= windowY && mouseY <= windowY + 11
+                    focused = true
+                }
+            }
         }
+
+        fun mouseReleased(mouseX: Int, mouseY: Int, state: Int) {
+            isMoving = false
+        }
+
+
     }
 
 }
