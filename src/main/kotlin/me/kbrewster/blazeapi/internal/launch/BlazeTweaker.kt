@@ -26,6 +26,7 @@ open class BlazeTweaker : ITweaker {
 
     override fun injectIntoClassLoader(cl: LaunchClassLoader) {
         // excludes from classloader
+        cl.addClassLoaderExclusion("me.kbrewster.blazeapi.utils.asm.")
         cl.addClassLoaderExclusion("org.apache.logging.log4j.")
         cl.addClassLoaderExclusion("kotlin.")
 
