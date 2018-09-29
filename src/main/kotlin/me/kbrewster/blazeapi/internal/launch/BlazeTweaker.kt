@@ -1,7 +1,6 @@
 package me.kbrewster.blazeapi.internal.launch
 
 import me.kbrewster.blazeapi.internal.addons.AddonBootstrap
-import me.kbrewster.blazeapi.internal.launch.transformers.BlazeTransformer
 import net.minecraft.launchwrapper.ITweaker
 import net.minecraft.launchwrapper.LaunchClassLoader
 import org.spongepowered.asm.launch.MixinBootstrap
@@ -26,7 +25,6 @@ open class BlazeTweaker : ITweaker {
 
     override fun injectIntoClassLoader(cl: LaunchClassLoader) {
         // excludes from classloader
-        cl.addClassLoaderExclusion("me.kbrewster.blazeapi.")
         cl.addClassLoaderExclusion("org.apache.logging.log4j.")
         cl.addClassLoaderExclusion("kotlin.")
 
@@ -35,7 +33,7 @@ open class BlazeTweaker : ITweaker {
         AddonBootstrap.init()
 
         // registers transformers
-        cl.registerTransformer(BlazeTransformer::class.java.name)
+        //    cl.registerTransformer(BlazeTransformer::class.java.name)
 
         // sets up mixin configurations
         with(MixinEnvironment.getDefaultEnvironment()) {
