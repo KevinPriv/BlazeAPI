@@ -1,9 +1,9 @@
 @file:JvmName("BlazeAPI")
 package me.kbrewster.blazeapi
 
-import me.kbrewster.blazeapi.api.event.EventBus
 import me.kbrewster.blazeapi.internal.addons.Addon
 import me.kbrewster.blazeapi.internal.launch.transformers.impl.ITransformer
+import me.kbrewster.eventbus.DefaultEventBus
 import org.apache.logging.log4j.LogManager
 
 /**
@@ -35,7 +35,7 @@ val LOGGER = LogManager.getLogger(ID)
  * Minecraft events are registered and posted
  * {@link me.kbrewster.blazeapi.api.event.EventBus}
  */
-val EVENTBUS = EventBus()
+val EVENTBUS = DefaultEventBus()
     @JvmName("getEventBus") get
 
 /**

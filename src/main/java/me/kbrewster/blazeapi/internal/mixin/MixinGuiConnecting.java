@@ -1,7 +1,7 @@
 package me.kbrewster.blazeapi.internal.mixin;
 
 import me.kbrewster.blazeapi.BlazeAPI;
-import me.kbrewster.blazeapi.api.event.ServerJoinEvent;
+import me.kbrewster.blazeapi.api.events.ServerJoinEvent;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

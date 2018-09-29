@@ -1,11 +1,12 @@
 package me.kbrewster.blazeapi.internal.mixin;
 
 import me.kbrewster.blazeapi.BlazeAPI;
-import me.kbrewster.blazeapi.api.event.*;
+import me.kbrewster.blazeapi.api.events.*;
 import me.kbrewster.blazeapi.internal.addons.Addon;
 import me.kbrewster.blazeapi.internal.addons.AddonMinecraftBootstrap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
+import org.lwjgl.input.Keyboard;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -38,14 +39,22 @@ public abstract class MixinMinecraft {
         }
     }
 
+    @Inject(method = "dispatchKeypresses", at = @At(value = "INVOKE_ASSIGN", target = "Lorg/lwjgl/input/Keyboard;getEventKeyState()Z"))
+    private void dispatchKeyPresses(CallbackInfo ci) {
+        int key = Keyboard.getEventKey();
+        boolean press = Keyboard.getEventKeyState();
+        boolean repeat = Keyboard.isRepeatEvent();
+        BlazeAPI.getEventBus().post(new InputEvents.Keypress(key, press, repeat));
+    }
+
     @Inject(method = "clickMouse", at = @At("RETURN"))
     private void clickMouse(CallbackInfo ci) {
-        BlazeAPI.getEventBus().post(new LeftClickEvent());
+        BlazeAPI.getEventBus().post(new InputEvents.LeftClick());
     }
 
     @Inject(method = "rightClickMouse", at = @At("RETURN"))
     private void rightClickMouse(CallbackInfo ci) {
-        BlazeAPI.getEventBus().post(new RightClickEvent());
+        BlazeAPI.getEventBus().post(new InputEvents.RightClick());
     }
 
     @Inject(method = "shutdown", at = @At("HEAD"))

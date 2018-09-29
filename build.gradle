@@ -42,14 +42,17 @@ group= "me.kbrewster.blazeapi" // http://maven.apache.org/guides/mini/guide-nami
 archivesBaseName = "Blaze API"
 
 minecraft {
-    version = "1.13-pre5"
+    version = "1.8.9"
+    mappings = "stable_20"
     tweakClass = "me.kbrewster.blazeapi.api.internal.BlazeTweaker"
     runDir = 'run'
+    makeObfSourceJar = false
 }
 
 dependencies {
 
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.30"
+    compile "com.github.KevinPriv:Blaze:ef5944722a"
     compile('org.spongepowered:mixin:0.7.5-SNAPSHOT')  {
         exclude module: 'launchwrapper'
         exclude module: 'guava'

@@ -1,8 +1,8 @@
 package me.kbrewster.blazeapi.internal.mixin;
 
 import me.kbrewster.blazeapi.BlazeAPI;
-import me.kbrewster.blazeapi.api.event.GuiScreenCloseEvent;
-import me.kbrewster.blazeapi.api.event.GuiScreenOpenEvent;
+import me.kbrewster.blazeapi.api.events.GuiScreenCloseEvent;
+import me.kbrewster.blazeapi.api.events.GuiScreenOpenEvent;
 import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
