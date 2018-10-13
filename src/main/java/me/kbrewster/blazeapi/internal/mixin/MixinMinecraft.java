@@ -44,7 +44,8 @@ public abstract class MixinMinecraft {
         int key = Keyboard.getEventKey();
         boolean press = Keyboard.getEventKeyState();
         boolean repeat = Keyboard.isRepeatEvent();
-        BlazeAPI.getEventBus().post(new InputEvents.Keypress(key, press, repeat));
+        boolean down = Keyboard.getEventKeyState();
+        BlazeAPI.getEventBus().post(new InputEvents.Keypress(key, repeat, press, down));
     }
 
     @Inject(method = "clickMouse", at = @At("RETURN"))

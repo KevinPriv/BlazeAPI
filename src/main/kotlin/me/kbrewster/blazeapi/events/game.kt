@@ -40,6 +40,6 @@ class InputEvents {
     /**
      * Fired once a key is pressed
      */
-    class Keypress(val key: Int, val isRepeated: Boolean, val isPressed: Boolean)
+    class Keypress(val key: Int, val isRepeated: Boolean, val isPressed: Boolean, val isKeyDown: Boolean)
 
 }

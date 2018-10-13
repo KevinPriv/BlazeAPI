@@ -1,6 +1,6 @@
-package me.kbrewster.blazeapi.utils.sys
+package me.kbrewster.blazeapi.utils
 
-object OS {
+object OperatingSystem {
 
     fun getPlatform(): Platform {
         val osName = System.getProperty("os.name").toLowerCase()
