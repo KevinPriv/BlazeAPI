@@ -52,7 +52,7 @@ minecraft {
 dependencies {
 
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.30"
-    compile "com.github.KevinPriv:Blaze:ef5944722a"
+    compile "com.github.KevinPriv:Blaze:master-SNAPSHOT"
     compile('org.spongepowered:mixin:0.7.5-SNAPSHOT')  {
         exclude module: 'launchwrapper'
         exclude module: 'guava'
