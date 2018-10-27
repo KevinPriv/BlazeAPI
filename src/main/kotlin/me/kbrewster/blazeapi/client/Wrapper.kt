@@ -3,11 +3,14 @@ package me.kbrewster.blazeapi.client
 
 import net.minecraft.client.Minecraft
 
-val mc = Minecraft.getMinecraft()
+val mc
+    get() = Minecraft.getMinecraft()
 
-val thePlayer = mc.thePlayer
+val thePlayer 
+    get() = mc.thePlayer
 
-val fontRenderer = mc.fontRendererObj
+val fontRenderer
+    get() = mc.fontRendererObj
 
 inline fun Minecraft.profile(key: String, body: () -> Unit) {
     this.mcProfiler.startSection(key)
