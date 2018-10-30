@@ -3,8 +3,8 @@ package me.kbrewster.blazeapi
 
 import me.kbrewster.blazeapi.internal.addons.Addon
 import me.kbrewster.eventbus.DefaultEventBus
+import net.minecraft.launchwrapper.IClassTransformer
 import org.apache.logging.log4j.LogManager
-import org.spongepowered.asm.service.ITransformer
 
 /**
  * Minecraft version the API is currently running
@@ -36,5 +36,5 @@ val LOADED_ADDONS = ArrayList<Addon>()
 /**
  * Transformers that will be ran at the end of the BlazeTweaker
  */
-val TRANSFORMERS: Set<ITransformer> = LinkedHashSet()
+val TRANSFORMERS: Set<IClassTransformer> = LinkedHashSet()
     @JvmName("getTransformers") get
