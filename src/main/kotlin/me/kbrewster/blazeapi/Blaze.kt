@@ -2,9 +2,9 @@
 package me.kbrewster.blazeapi
 
 import me.kbrewster.blazeapi.internal.addons.Addon
-import me.kbrewster.blazeapi.internal.launch.transformers.impl.ITransformer
 import me.kbrewster.eventbus.DefaultEventBus
 import org.apache.logging.log4j.LogManager
+import org.spongepowered.asm.service.ITransformer
 
 /**
  * Minecraft version the API is currently running
