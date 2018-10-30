@@ -2,7 +2,8 @@ package me.kbrewster.blazeapi.utils
 
 object OperatingSystem {
 
-    fun getPlatform(): Platform {
+    val platform: Platform
+        get() {
         val osName = System.getProperty("os.name").toLowerCase()
         return when {
             osName.contains("win") -> Platform.WINDOWS

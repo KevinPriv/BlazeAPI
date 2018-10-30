@@ -9,8 +9,10 @@ import net.minecraft.launchwrapper.Launch
 class TweakerTranslator : AbstractTranslator() {
 
     override fun translate(manifest: AddonManifest) {
-        val tweakers = Launch.blackboard["Tweaks"] as MutableList<ITweaker>
-        tweakers.add(Class.forName(manifest.tweakerClass).newInstance() as ITweaker)
+        manifest.tweakerClass?.let { tweaker ->
+            val tweakers = Launch.blackboard["Tweaks"] as MutableList<ITweaker>
+            tweakers.add(Class.forName(tweaker).newInstance() as ITweaker)
+        }
     }
 
 }

@@ -3,7 +3,7 @@ package me.kbrewster.blazeapi.internal.addons.translate
 import me.kbrewster.blazeapi.TRANSFORMERS
 import me.kbrewster.blazeapi.internal.addons.AddonManifest
 import me.kbrewster.blazeapi.internal.addons.translate.impl.AbstractTranslator
-import me.kbrewster.blazeapi.internal.launch.transformers.impl.ITransformer
+import org.spongepowered.asm.service.ITransformer
 
 /**
  * Adds all transformers to a public list
