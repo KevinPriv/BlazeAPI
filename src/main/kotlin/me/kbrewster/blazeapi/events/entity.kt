@@ -20,3 +20,8 @@ class SpawnpointChangeEvent(val blockPos: BlockPos) : AbstractEvent()
  * Fired when a player is spawned into the world
  */
 class PlayerSpawnEvent(val player: EntityPlayer) : AbstractEvent()
+
+/**
+ * Fired when a player is removed from the world
+ */
+class PlayerDespawnEvent(val player: EntityPlayer) : AbstractEvent()
