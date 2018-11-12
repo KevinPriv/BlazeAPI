@@ -12,6 +12,7 @@
     "MixinGuiIngame",
     "MixinGuiNewChat",
     "MixinGuiScreen",
-    "MixinWorld"
+    "MixinWorld",
+    "MixinWorldClient"
   ]
 }

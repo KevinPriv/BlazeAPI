@@ -37,11 +37,4 @@ public class MixinWorld {
                 new PlayerDespawnEvent((EntityPlayer) entityIn)
         );
     }
-
-    @Inject(method = "sendQuittingDisconnectingPacket", at = @At("HEAD"))
-    private void disconnect(CallbackInfo ci) {
-        BlazeAPI.getEventBus().post(
-                new ServerDisconnectEvent()
-        );
-    }
 }
