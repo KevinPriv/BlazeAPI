@@ -3,6 +3,7 @@ package me.kbrewster.blazeapi.internal.mixin;
 import me.kbrewster.blazeapi.BlazeAPI;
 import me.kbrewster.blazeapi.events.PlayerDespawnEvent;
 import me.kbrewster.blazeapi.events.PlayerSpawnEvent;
+import me.kbrewster.blazeapi.events.ServerDisconnectEvent;
 import me.kbrewster.blazeapi.events.SpawnpointChangeEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(World.class)
 public class MixinWorld {
-
     @Inject(method = "setSpawnPoint", at = @At("HEAD"))
     private void setSpawnPoint(BlockPos pos, CallbackInfo ci) {
         BlazeAPI.getEventBus().post(
@@ -35,6 +35,13 @@ public class MixinWorld {
     private void removePlayerFromWorld(Entity entityIn, CallbackInfo ci) {
         BlazeAPI.getEventBus().post(
                 new PlayerDespawnEvent((EntityPlayer) entityIn)
+        );
+    }
+
+    @Inject(method = "sendQuittingDisconnectingPacket", at = @At("HEAD"))
+    private void disconnect(CallbackInfo ci) {
+        BlazeAPI.getEventBus().post(
+                new ServerDisconnectEvent(null, null)
         );
     }
 }
