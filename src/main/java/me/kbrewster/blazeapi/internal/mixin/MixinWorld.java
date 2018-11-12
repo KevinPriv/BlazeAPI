@@ -41,7 +41,7 @@ public class MixinWorld {
     @Inject(method = "sendQuittingDisconnectingPacket", at = @At("HEAD"))
     private void disconnect(CallbackInfo ci) {
         BlazeAPI.getEventBus().post(
-                new ServerDisconnectEvent(null, null)
+                new ServerDisconnectEvent()
         );
     }
 }
