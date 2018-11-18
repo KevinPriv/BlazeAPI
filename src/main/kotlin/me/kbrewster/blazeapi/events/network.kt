@@ -12,7 +12,7 @@ class ServerJoinEvent(val ip: String, val port: Int) : AbstractEvent()
 /**
  * Fired once the player disconnects from the server
  */
-class ServerDisconnectEvent(val reason: IChatComponent, val reasonLocalizationKey: String) : AbstractEvent()
+class ServerDisconnectEvent : AbstractEvent()
 
 /**
  * Fired when a chat packet is about to be sent to the server

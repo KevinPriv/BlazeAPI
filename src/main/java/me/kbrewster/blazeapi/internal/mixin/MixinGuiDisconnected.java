@@ -17,6 +17,6 @@ public class MixinGuiDisconnected {
                       String reasonLocalizationKey,
                       IChatComponent reason,
                       CallbackInfo ci) {
-        BlazeAPI.getEventBus().post(new ServerDisconnectEvent(reason, reasonLocalizationKey));
+        BlazeAPI.getEventBus().post(new ServerDisconnectEvent());
     }
 }

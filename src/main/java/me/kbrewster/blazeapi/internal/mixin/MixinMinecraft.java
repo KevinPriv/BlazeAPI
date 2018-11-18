@@ -6,6 +6,7 @@ import me.kbrewster.blazeapi.internal.addons.Addon;
 import me.kbrewster.blazeapi.internal.addons.AddonMinecraftBootstrap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.world.WorldSettings;
 import org.lwjgl.input.Keyboard;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,11 +33,18 @@ public abstract class MixinMinecraft {
         BlazeAPI.getEventBus().post(new ClientTickEvent());
     }
 
-    @Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V", at = @At("HEAD"))
+    @Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V", at = @At("TAIL"))
     private void loadWorld(WorldClient worldClientIn, String loadingMessage, CallbackInfo ci) {
         if (worldClientIn != null) {
             BlazeAPI.getEventBus().post(new WorldLoadEvent(worldClientIn, loadingMessage));
+        } else {
+            BlazeAPI.getEventBus().post(new WorldUnloadEvent());
         }
+    }
+
+    @Inject(method = "launchIntegratedServer", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/LoadingScreenRenderer;displaySavingString(Ljava/lang/String;)V"))
+    private void launchSingleplayer(String folderName, String worldName, WorldSettings worldSettingsIn, CallbackInfo ci) {
+        BlazeAPI.getEventBus().post(new ServerJoinEvent("localhost", 25565));
     }
 
     @Inject(method = "dispatchKeypresses", at = @At(value = "INVOKE_ASSIGN", target = "Lorg/lwjgl/input/Keyboard;getEventKeyState()Z"))

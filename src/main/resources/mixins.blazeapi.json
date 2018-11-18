@@ -11,6 +11,8 @@
     "MixinGuiDisconnected",
     "MixinGuiIngame",
     "MixinGuiNewChat",
-    "MixinGuiScreen"
+    "MixinGuiScreen",
+    "MixinWorld",
+    "MixinWorldClient"
   ]
 }
